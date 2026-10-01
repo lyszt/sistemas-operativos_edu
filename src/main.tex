@@ -1,0 +1,34 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{minted}
+% --- Encoding & language -----------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+% --- Page layout ---------------------------------------------------------
+\usepackage[margin=2.5cm]{geometry}
+\renewcommand{\baselinestretch}{1.25}
+
+% --- Math, graphics, references ------------------------------------------
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\title{Project Title}
+\author{Your Name}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\input{sections/introduction}
+\input{sections/development}
+\input{sections/conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
