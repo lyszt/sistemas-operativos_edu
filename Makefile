@@ -1,29 +1,9 @@
-MAIN      := main
-SRC_DIR   := src
-OUTPUT_DIR:= output
-PDF       := $(OUTPUT_DIR)/$(MAIN).pdf
+SRC_DIR := src
+PDF     := $(SRC_DIR)/main.pdf
 
-.PHONY: all build clean distclean watch open
+.PHONY: lint
 
-all: build clean
-
-# Compile the document (handles bibtex/reruns automatically via latexmk)
-build:
-	latexmk -cd $(SRC_DIR)/$(MAIN).tex
-
-# Re-run on every save
-watch:
-	latexmk -cd -pvc $(SRC_DIR)/$(MAIN).tex
-
-# Open the compiled PDF (Linux)
-open: build
-	xdg-open $(PDF)
-
-# Remove auxiliary files, keep the PDF
-clean:
-	latexmk -cd -c $(SRC_DIR)/$(MAIN).tex
-
-# Remove everything latexmk produced, including the PDF
-distclean:
-	latexmk -cd -C $(SRC_DIR)/$(MAIN).tex
-	rm -rf $(OUTPUT_DIR)
+# Check Spanish grammar/style on the compiled PDF (via LanguageTool's public API)
+# Compile the PDF yourself first (e.g. via VSCode) if $(PDF) doesn't exist yet or is stale.
+lint:
+	./scripts/lint-grammar.sh $(PDF)
