@@ -5,16 +5,16 @@
 <title>Grammar Watcher</title>
 <style>
   :root {
-    --bg: #0f1117;
-    --card: #181b24;
-    --border: #2a2e3a;
-    --text: #e6e8ee;
-    --muted: #8b90a0;
-    --accent: #ff5d73;
-    --accent-soft: #3a1e24;
-    --chip: #253042;
-    --chip-text: #9fd3ff;
-    --ok: #4fd98a;
+    --bg: #0d0f14;
+    --panel: #1a1d26;
+    --card: #1f232e;
+    --border: #343a48;
+    --text: #f5f6fa;
+    --muted: #c3c8d6;
+    --ok: #3ddc84;
+    --err-bg: #4a1f1f;
+    --err-border: #7a3030;
+    --err-text: #ffb4b4;
   }
   * { box-sizing: border-box; }
   body {
@@ -23,23 +23,25 @@
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
+    font-size: 17px;
   }
   header {
-    padding: 1.5rem 2rem 1rem;
+    padding: 1.5rem 2rem;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5rem;
+    background: var(--panel);
   }
   h1 {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     margin: 0;
-    font-weight: 600;
+    font-weight: 700;
   }
   #status {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--muted);
   }
   #status.live::before {
@@ -49,69 +51,124 @@
   }
   main {
     padding: 1.5rem 2rem 3rem;
-    max-width: 820px;
+    max-width: 880px;
     margin: 0 auto;
   }
   .empty {
     text-align: center;
     color: var(--muted);
     padding: 4rem 1rem;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
   }
-  .count {
-    margin-bottom: 1rem;
-    color: var(--muted);
-    font-size: 0.9rem;
+  .summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .summary .total {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-right: 0.3rem;
+    align-self: center;
+  }
+  .cat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #0c0d10;
+  }
+  .cat-badge .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: currentColor;
+    filter: brightness(0.4);
+  }
+  .group {
+    margin-bottom: 1.8rem;
+  }
+  .group-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.7rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .group-title .swatch {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 4px;
+    flex-shrink: 0;
   }
   .issue {
     background: var(--card);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
+    border-left-width: 5px;
+    border-left-style: solid;
     border-radius: 8px;
-    padding: 1rem 1.2rem;
+    padding: 1.1rem 1.3rem;
     margin-bottom: 0.85rem;
   }
   .issue .message {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    font-size: 1.02rem;
   }
   .issue .context {
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     color: var(--muted);
-    background: #0b0d12;
+    background: #0a0b0f;
+    border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 0.55rem 0.7rem;
-    margin-bottom: 0.6rem;
+    padding: 0.65rem 0.8rem;
+    margin-bottom: 0.7rem;
     overflow-x: auto;
     white-space: pre-wrap;
     word-break: break-word;
+    line-height: 1.5;
   }
   .issue .context mark {
-    background: var(--accent-soft);
-    color: var(--accent);
+    background: #ffd84d;
+    color: #231a00;
     border-radius: 3px;
-    padding: 0 2px;
+    padding: 0.05rem 0.2rem;
+    font-weight: 700;
   }
   .chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .chips .label {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-right: 0.2rem;
   }
   .chip {
-    background: var(--chip);
-    color: var(--chip-text);
-    padding: 0.2rem 0.6rem;
+    background: #2d3346;
+    color: #d7e6ff;
+    padding: 0.28rem 0.7rem;
     border-radius: 999px;
-    font-size: 0.82rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border: 1px solid #40485f;
   }
   .error-banner {
-    background: #3a1e1e;
-    border: 1px solid #5a2e2e;
-    color: #ff9f9f;
-    padding: 0.8rem 1rem;
+    background: var(--err-bg);
+    border: 1px solid var(--err-border);
+    color: var(--err-text);
+    padding: 0.9rem 1.1rem;
     border-radius: 8px;
     margin-bottom: 1rem;
+    font-weight: 600;
   }
 </style>
 </head>
@@ -128,6 +185,29 @@
     const statusEl = document.getElementById("status");
     const resultsEl = document.getElementById("results");
 
+    // High-contrast, colorblind-distinguishable palette. Each category gets a
+    // consistent color (by id) so badges, group headers and card borders all match.
+    const CATEGORY_COLORS = {
+      TYPOS: "#ffd166",          // amber
+      GRAMMAR: "#b388ff",        // violet
+      STYLE: "#4dd0e1",          // cyan
+      TYPOGRAPHY: "#81c784",     // green
+      PUNCTUATION: "#ff8a65",    // orange
+      CASING: "#f06292",         // pink
+      CONFUSED_WORDS: "#ba68c8", // purple
+      REDUNDANCY: "#aed581",     // lime
+      COLLOCATIONS: "#4fc3f7",   // light blue
+      MISC: "#90a4ae",           // slate
+    };
+    const FALLBACK_COLORS = ["#e0e0e0", "#80cbc4", "#ffab91", "#9fa8da", "#c5e1a5"];
+
+    function colorForCategory(id) {
+      if (CATEGORY_COLORS[id]) return CATEGORY_COLORS[id];
+      let hash = 0;
+      for (const ch of id) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+      return FALLBACK_COLORS[hash % FALLBACK_COLORS.length];
+    }
+
     function escapeHtml(str) {
       return str.replace(/[&<>"']/g, (c) => ({
         "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
@@ -140,6 +220,18 @@
       const bad = escapeHtml(text.slice(offset, offset + length));
       const after = escapeHtml(text.slice(offset + length));
       return `${before}<mark>${bad}</mark>${after}`;
+    }
+
+    function groupByCategory(matches) {
+      const groups = new Map();
+      for (const m of matches) {
+        const cat = m.rule?.category || { id: "MISC", name: "Otros" };
+        if (!groups.has(cat.id)) groups.set(cat.id, { name: cat.name, items: [] });
+        groups.get(cat.id).items.push(m);
+      }
+      return [...groups.entries()]
+        .map(([id, g]) => ({ id, ...g }))
+        .sort((a, b) => b.items.length - a.items.length);
     }
 
     function render(payload) {
@@ -159,21 +251,43 @@
       }
 
       resultsEl.className = "";
-      const count = `<div class="count">${matches.length} problema(s) encontrado(s)</div>`;
-      const cards = matches.map((m) => {
-        const chips = (m.replacements || [])
-          .slice(0, 6)
-          .map((r) => `<span class="chip">${escapeHtml(r.value)}</span>`)
-          .join("");
+      const groups = groupByCategory(matches);
+
+      const summary = `
+        <div class="summary">
+          <span class="total">${matches.length} problema(s)</span>
+          ${groups.map((g) => {
+            const color = colorForCategory(g.id);
+            return `<span class="cat-badge" style="background:${color}"><span class="dot"></span>${escapeHtml(g.name)} · ${g.items.length}</span>`;
+          }).join("")}
+        </div>`;
+
+      const sections = groups.map((g) => {
+        const color = colorForCategory(g.id);
+        const cards = g.items.map((m) => {
+          const chips = (m.replacements || [])
+            .slice(0, 6)
+            .map((r) => `<span class="chip">${escapeHtml(r.value)}</span>`)
+            .join("");
+          return `
+            <div class="issue" style="border-left-color:${color}">
+              <div class="message">${escapeHtml(m.message)}</div>
+              <div class="context">${renderContext(m.context)}</div>
+              ${chips ? `<div class="chips"><span class="label">sugerencias:</span>${chips}</div>` : ""}
+            </div>`;
+        }).join("");
+
         return `
-          <div class="issue">
-            <div class="message">${escapeHtml(m.message)}</div>
-            <div class="context">${renderContext(m.context)}</div>
-            ${chips ? `<div class="chips">${chips}</div>` : ""}
+          <div class="group">
+            <div class="group-title">
+              <span class="swatch" style="background:${color}"></span>
+              ${escapeHtml(g.name)} (${g.items.length})
+            </div>
+            ${cards}
           </div>`;
       }).join("");
 
-      resultsEl.innerHTML = count + cards;
+      resultsEl.innerHTML = summary + sections;
     }
 
     function connect() {

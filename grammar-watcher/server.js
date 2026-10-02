@@ -26,13 +26,28 @@ function broadcast(payload) {
   }
 }
 
-function extractText(pdfPath) {
+function run(cmd, args, input) {
   return new Promise((resolve, reject) => {
-    execFile("pdftotext", ["-layout", pdfPath, "-"], { maxBuffer: 10 * 1024 * 1024 }, (err, stdout) => {
+    execFile(cmd, args, { maxBuffer: 10 * 1024 * 1024, input }, (err, stdout) => {
       if (err) return reject(err);
       resolve(stdout);
     });
   });
+}
+
+function extractText(pdfPath) {
+  return run("pdftotext", ["-layout", pdfPath, "-"]);
+}
+
+async function queryLanguageTool(text) {
+  const stdout = await run("curl", [
+    "-sS", "--fail",
+    "--data-urlencode", `text=${text}`,
+    "--data-urlencode", `language=${LANGUAGE}`,
+    "--data-urlencode", "disabledRules=WHITESPACE_RULE,ES_SPLIT_WORDS_HYPHEN,COMMA_PARENTHESIS_WHITESPACE",
+    API_URL,
+  ]);
+  return JSON.parse(stdout);
 }
 
 async function checkGrammar() {
@@ -43,24 +58,7 @@ async function checkGrammar() {
       return;
     }
 
-    const body = new URLSearchParams({
-      text,
-      language: LANGUAGE,
-      disabledRules: "WHITESPACE_RULE",
-    });
-
-    const res = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body,
-    });
-
-    if (!res.ok) {
-      broadcast({ ok: false, error: `LanguageTool API error: ${res.status}` });
-      return;
-    }
-
-    const data = await res.json();
+    const data = await queryLanguageTool(text);
     broadcast({ ok: true, checkedAt: new Date().toISOString(), matches: data.matches });
   } catch (err) {
     broadcast({ ok: false, error: err.message });

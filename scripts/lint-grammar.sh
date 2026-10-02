@@ -18,7 +18,7 @@ TEXT="$(pdftotext -layout "$PDF" -)"
 RESPONSE="$(curl -sS --fail \
   --data-urlencode "text=$TEXT" \
   --data-urlencode "language=$LANG_CODE" \
-  --data-urlencode "disabledRules=WHITESPACE_RULE" \
+  --data-urlencode "disabledRules=WHITESPACE_RULE,ES_SPLIT_WORDS_HYPHEN,COMMA_PARENTHESIS_WHITESPACE" \
   "$API_URL")"
 
 MATCH_COUNT="$(jq '.matches | length' <<<"$RESPONSE")"
