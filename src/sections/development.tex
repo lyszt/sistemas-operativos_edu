@@ -29,3 +29,18 @@ a la ejecución de un programa o una tarea en un sistema informático. Todo proc
 específica de recursos del sistema a utilizar, y eso decide el sistema operativo. (Tiempo de la unidad central de procesamiento, memoria y dispositivos de entrada y salida).
 El proceso, de esa manera, se ejecuta en su propio espacio de direcciones virtual y ejecuta las instrucciones especificadas en su código de programa.
 Mi idea era buena, y necesitaba solamente estos detalles, específicamente, que a un proceso son dados recursos de sistemas de acuerdo con la necesidad. 
+
+\subsection{¿Cuál es la diferencia entre un proceso y una thread?}
+Un proceso, como dicho antes, es una tarea o un conjunto de instrucciones que pueden ser ejecutados dentro de la memoria virtual.
+Una thread es otra cosa, es como una división del procesador que permite que multiplas tareas dentro de un proceso sean ejecutadas al mismo tiempo.
+("Sin más dilación", tengo que decir más este tipo de cosa. Sueña muy bueno.)
+
+\href{https://codigofacilito.com/articulos/threads-procesos}{Este sitio} afirma que un
+proceso podría, por ejemplo, si fuera una receta, ser ejecutado por n chefs. Y esa es la parte llave:
+Para que un proceso pueda ser ejecutado este necesita poseer por lo menos un thread. 
+A este thread lo vamos a conocer como el thread principal.
+Y, como había dicho, si queremos divirlo, necesitaremos más. A partir de esta referencia podemos también decir que las threads
+son entidades más pequeñas que los procesos, y hacen tareas menores. Y, diferente de lo que di, los threads
+viven DENTRO DE LOS PROCESOS. Lo que me sueña raro.
+
+Gracias, amigo.
