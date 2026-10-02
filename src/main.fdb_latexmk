@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1790899884.51412 "main.aux" "main.bbl" "main" 1790900208.01277 0
+["bibtex main"] 1790901346.67695 "main.aux" "main.bbl" "main" 1790901521.4849 0
   "./references.bib" 1790896925.40536 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1777593600 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1790900207.8576 889 a6d48119cb5103258ffd392db8bd34c4 "pdflatex"
+  "main.aux" 1790901521.3587 1050 0857a5d0fd4e8b54577602f28bf12a5c "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1790900207.33399 "/home/kaldwin/Development/UFFS/sistemas-operativos_edu/src/main.tex" "main.pdf" "main" 1790900208.01333 0
+["pdflatex"] 1790901520.70707 "/home/kaldwin/Development/UFFS/sistemas-operativos_edu/src/main.tex" "main.pdf" "main" 1790901521.48515 0
   "/home/kaldwin/Development/UFFS/sistemas-operativos_edu/src/main.tex" 1790897752.04942 614 a83f919fb1f86f80a26615872b488081 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -99,13 +99,13 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1777593600 43785 66587115382950aca692b5f6e3c2fb74 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1787165560 776436 27ef0726e4e2cf15535f67589cb017cd ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1790897864 2309512 073659e2717ab72d6c279f17408e0a6c ""
-  "main.aux" 1790900207.8576 889 a6d48119cb5103258ffd392db8bd34c4 "pdflatex"
-  "main.bbl" 1790899884.52942 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
-  "main.out" 1790900207.8586 655 8418634091d1bcc908094aa553968ec5 "pdflatex"
+  "main.aux" 1790901521.3587 1050 0857a5d0fd4e8b54577602f28bf12a5c "pdflatex"
+  "main.bbl" 1790901346.70469 49 0eba253fc001332e731e8aba3f23127b "bibtex main"
+  "main.out" 1790901521.3617 999 61f2d4471e1d423d2ca6d8a38586758a "pdflatex"
   "main.tex" 1790897752.04942 614 a83f919fb1f86f80a26615872b488081 ""
-  "main.toc" 1790900207.8596 355 92d7babd58274df25ade4af70f9e9142 "pdflatex"
+  "main.toc" 1790901521.3617 475 b9fcba8ae6ee41572fcdc9d3f4acf6d0 "pdflatex"
   "sections/conclusion.tex" 1790896492.77264 53 343e7d891a9fa3383231abd975186369 ""
-  "sections/development.tex" 1790900207.03885 1133 80a58d75297425e58f3f9db258a2118f ""
+  "sections/development.tex" 1790901520.42571 2563 e3ba17a79213330ca9760fc253146939 ""
   "sections/introduction.tex" 1790896487.20332 57 5a8e5f89560212349a8754ce304a809a ""
   (generated)
   "main.aux"
