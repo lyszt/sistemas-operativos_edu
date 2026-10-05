@@ -44,6 +44,28 @@ son entidades más pequeñas que los procesos, y hacen tareas menores. Y, difere
 viven DENTRO DE LOS PROCESOS. Lo que me sueña raro.
 
 Gracias, amigo. Esto prueba que la contestación correcta para la tres, es, en realidad:
-la d! Procesos no pueden ser ejecutados en paralelo. Creo yo. No, esto también no es verdad, porque lo he hecho yo mismo en Python!
-Y si no es la d, ¿qué es? Deve ser la e, Threads no tienen contexto de ejecución. No, no es verdad también.
-Este profesor intenta nos matar.
+la d! Procesos no pueden ser ejecutados en paralelo. Creo yo. No, esto tampoco es verdad, porque lo he hecho yo mismo en Python!
+Y si no es la d, ¿qué es? Debe ser la e, Threads no tienen contexto de ejecución. No, no es verdad también.
+Este profesor intenta matarnos.
+
+Por lo que he visto en clase este viernes, la prueba será mas difícil que esta que estamos leyendo y estudiando ahora.
+Por más que sea importante estudiar esta prueba más fácil, creo que será más importante aprender los contenidos que realmente caerán en una prueba.
+Por lo tanto, elegiré otra a partir del Github de la universidad, algunas de las más recientes. 
+
+
+1. SO Kid se autodenomina um dos maiores especialistas em sistemas operacionais. Ele afirma que no 
+escalonamento de processos por lotería (lottery scheduling) os processos com apenas 1 bilhete
+acabam necessariamente padecendo de inanição (starvation). SO Kid está correto? Explique?
+
+No conozco en absoluto este contenido. Ni siquiera sé que es lottery scheduling. El concepto es: planificación de procesos.
+Son utilizados cuando hay múltiples cosas que hacer y una CPU limitada. Debese saber elegir cuales actividades deben ser hechas primero, y cuales
+procesos deben recibir más tiempo de CPU, lo que es llamado Time Slice o Time Quantum. El profesor explicó ese contenido, pero no muy bien, y cuando oí Quantum pensé que
+solamente intentaba de sonar un tipo inteligente.
+
+La planificación por lotería también es conocida como proportional share 
+(reparto proporcional). Es decir, es una política que intenta dar a cada proceso una parte del tiempo de CPU proporcional a la cantidad de billetes que tiene. En cada turno, el planificador sortea un billete al azar y el proceso que lo tiene se ejecuta. Cuantos más billetes 
+tiene un proceso, más probable es que gane, y a largo plazo recibe más tiempo de CPU. 
+Si quieres una metafora interesante puedes pensar en la loteria que ocurrió en Nipton, California,
+en Fallout New Vegas.
+
+En el juego, la Legión de César toma el pueblo de Nipton y organiza una lotería entre sus habitantes. Cada persona saca una ficha, y el resultado del sorteo decide su destino. Nadie puede prever qué le tocará, pero el resultado depende únicamente de las fichas. La planificación por lotería funciona de forma parecida. Cada proceso recibe billetes en lugar de fichas, y el planificador realiza un sorteo para decidir quién se ejecuta. La diferencia principal es que en Nipton cada habitante tenía una sola ficha, así que todos tenían la misma probabilidad, mientras que en el planificador un proceso puede tener más billetes que otro y, por tanto, más probabilidades de ganar. Además, el planificador no hace un único sorteo, sino uno en cada turno. Por eso, aunque a corto plazo el resultado parezca injusto, tras muchos sorteos cada proceso acaba recibiendo un tiempo de CPU proporcional a sus billetes."
