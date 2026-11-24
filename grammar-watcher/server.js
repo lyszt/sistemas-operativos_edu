@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 5055;
 const PDF_PATH = process.env.PDF_PATH || path.join(__dirname, "..", "src", "main.pdf");
 const LANGUAGE = "es";
 const API_URL = "https://api.languagetool.org/v2/check";
+// Only check from this section onwards; set CHECK_FROM="" to check the whole PDF.
+const CHECK_FROM = process.env.CHECK_FROM ?? "Desarrollo (P2)";
 
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
@@ -15,6 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const server = app.listen(PORT, () => {
   console.log(`grammar-watcher running at http://localhost:${PORT}`);
   console.log(`watching ${PDF_PATH}`);
+  console.log(`checking from: ${CHECK_FROM || "start of document"}`);
 });
 
 const wss = new WebSocketServer({ server });
@@ -50,9 +53,16 @@ async function queryLanguageTool(text) {
   return JSON.parse(stdout);
 }
 
+function scopeText(text) {
+  if (!CHECK_FROM) return text;
+  // lastIndexOf skips the table-of-contents entry and keeps the real section heading.
+  const start = text.lastIndexOf(CHECK_FROM);
+  return start === -1 ? text : text.slice(start);
+}
+
 async function checkGrammar() {
   try {
-    const text = await extractText(PDF_PATH);
+    const text = scopeText(await extractText(PDF_PATH));
     if (!text.trim()) {
       broadcast({ ok: false, error: "No text extracted from PDF." });
       return;

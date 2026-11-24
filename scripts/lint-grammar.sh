@@ -15,6 +15,14 @@ command -v jq        >/dev/null || { echo "jq not found" >&2; exit 2; }
 TEXT="$(pdftotext -layout "$PDF" -)"
 [ -n "$TEXT" ] || { echo "No text extracted from $PDF" >&2; exit 2; }
 
+# Only check from this section onwards (same default as grammar-watcher).
+# Set CHECK_FROM="" to check the whole PDF.
+CHECK_FROM="${CHECK_FROM:-Desarrollo (P2)}"
+if [ -n "$CHECK_FROM" ]; then
+  START_LINE="$(grep -nF -- "$CHECK_FROM" <<<"$TEXT" | tail -n 1 | cut -d: -f1 || true)"
+  [ -z "$START_LINE" ] || TEXT="$(tail -n "+$START_LINE" <<<"$TEXT")"
+fi
+
 RESPONSE="$(curl -sS --fail \
   --data-urlencode "text=$TEXT" \
   --data-urlencode "language=$LANG_CODE" \

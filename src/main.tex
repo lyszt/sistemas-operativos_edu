@@ -12,6 +12,20 @@
 \graphicspath{{images/}}
 \usepackage{natbib}
 
+% Quotations: caja discreta con barra lateral y texto en cursiva.
+\usepackage{tcolorbox}
+\tcbuselibrary{skins}
+\newtcolorbox{quotebox}{
+  enhanced,
+  boxrule=0pt,
+  colback=gray!6,
+  borderline west={2.5pt}{0pt}{gray!55},
+  left=12pt, right=10pt, top=8pt, bottom=8pt,
+  arc=2pt,
+  before skip=0.8em, after skip=0.8em,
+}
+\renewenvironment{quotation}{\begin{quotebox}\itshape\small}{\end{quotebox}}
+
 \title{Estudio de Sistemas Operativos}
 \author{Kaldwin}
 \date{\today}
@@ -21,7 +35,8 @@
 \newpage
 
 \input{sections/introduction}
-\input{sections/development}
+\input{sections/development-p1}
+\input{sections/development-p2}
 \input{sections/conclusion}
 
 \bibliographystyle{plain}
